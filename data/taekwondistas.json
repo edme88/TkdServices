@@ -1,0 +1,32 @@
+[
+    {
+    "Nombre": "Agustina",
+    "Apellido": "Aliciardi",
+    "Dni": "34004891",
+    "Categoría": "2 dan",
+    "Fecha de Nacimiento": "24/octubre/1988",
+    "Instructor": "Maximiliano Pedrotti",
+    "Peso": "60kg",
+    "Altura": "1,54m",
+    "Genero": "Femenino",
+    "Nacionalidad": "Argentina",
+    "Foto": "",
+    "Celular": "3513892282",
+    "Email": "edmealiciardi@gmail.com"
+  },
+  {
+    "Nombre": "Olivia",
+    "Apellido": "Oliv",
+    "Dni": "55623128",
+    "Categoría": "Blanco",
+    "Fecha de Nacimiento": "13/noviembre/2011",
+    "Instructor": "Walter Burgueño",
+    "Peso": "40kg",
+    "Altura": "1,44m",
+    "Genero": "Femenino",
+    "Nacionalidad": "Argentina",
+    "Foto": "",
+    "Celular": "3513892282",
+    "Email": "olicvia@gmail.com"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "cursofullstack",
+  "version": "1.0.0",
+  "description": "curso full stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "nodemon": "node ./node_modules/.bin/nodemon",
+    "nodemon2": "nodemon server.js"
+  },
+  "keywords": [
+    "full",
+    "stack"
+  ],
+  "author": "agus",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
