@@ -59,3 +59,15 @@ body:
 "Celular": "3513892282",
 "Email": "andres@gmail.com"
 }
+
+CRUD
+(tarea) hacer el delete
+(tarea) agregar crud de Dojans
+Interfaz para Dojos y Taekwondistas
+Swagger
+
+Luego BD
+Manejo de Errores - Loggers
+Eventos
+Envio de Emails cuando se registra o se crea un evento o capacitación
+Luego conquistar el mundo (?)
