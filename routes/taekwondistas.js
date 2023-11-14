@@ -71,6 +71,7 @@ routes.get("/taekwondistas", (request, response) => {
 });
 
 routes.post("/taekwondista", (request, response) => {
+  /*
   // Obtener los datos obligatorios de la consulta
   const requiredFields = [
     "nombre",
@@ -115,54 +116,18 @@ routes.post("/taekwondista", (request, response) => {
 
   console.log(request);
   fs.writeFileSync("persona.json", request);
-  response.json(query);
+  response.json(query);*/
+  const tkdData = request.body;
+  tkdService.addTaek(tkdData);
+  response.json(`${JSON.stringify(tkdData)} creado OK`);
 });
 
-routes.put("/taekwondista", (request, response) => {
-  // Obtener los datos obligatorios de la consulta
-  const requiredFields = [
-    "nombre",
-    "apellido",
-    "dni",
-    "fechaNacimiento",
-    "direccion",
-    "categoria",
-    "instructor",
-    "peso",
-    "altura",
-    "genero",
-    "nacionalidad",
-    "celular",
-    "email",
-    "contactoEmergencia.nombre",
-    "contactoEmergencia.apellido",
-    "contactoEmergencia.vinculo",
-    "contactoEmergencia.celular",
-  ];
-
-  //console.log(chalk.blue("Hello world!"));
-  const missingFields = [];
-
-  const query = request.query;
-  // Verificar qué campos obligatorios faltan
-  requiredFields.forEach((field, $inx) => {
-    if (!query[field]) {
-      missingFields.push(field);
-      console.log(`It ${$inx} - El valor ${field} no esta incluido`);
-    } else {
-      console.log(`It ${$inx} - El valor ${field} SI esta incluido`);
-    }
-  });
-
-  // Comprobar si faltan campos
-  if (missingFields.length > 0) {
-    return response
-      .status(400)
-      .json({ error: "Faltan datos obligatorios", missingFields });
-  }
-
+routes.put("/taekwondista/:dni", (request, response) => {
   console.log(request);
-  response.json(query);
+  const dataToUpdate = request.body;
+  const res = tkdService.updateTkd(request.params.dni, dataToUpdate);
+
+  response.json(res);
 });
 
 routes.delete("/taekwondista", (request, response) => {

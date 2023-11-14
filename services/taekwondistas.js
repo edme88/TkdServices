@@ -10,6 +10,15 @@ class TaekwondistaService {
   getFiltered(key, val) {
     return tkdModel.getFiltered(key, val);
   }
+
+  addTaek(taekwondista) {
+    //agregar lógica para validar la info de los campos
+    return tkdModel.addTaek(taekwondista);
+  }
+
+  updateTkd(dni, dataToUpdate) {
+    return tkdModel.updateTkd(dni, dataToUpdate);
+  }
 }
 
 module.exports = new TaekwondistaService();

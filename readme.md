@@ -38,3 +38,24 @@ Me aparece 1 resultado
 Si busco
 http://localhost:8080/api/taekwondistas?Genero=Femenino
 Me aparecen 2 resultados
+
+POST
+http://localhost:8080/api/taekwondista
+raw JSON
+
+body:
+{
+"Nombre": "Andres",
+"Apellido": "Leal",
+"Dni": "34011678",
+"Categoría": "blanco",
+"Fecha de Nacimiento": "04/Enero/1989",
+"Instructor": "Maximiliano Pedrotti",
+"Peso": "92kg",
+"Altura": "1,54m",
+"Genero": "Masculino",
+"Nacionalidad": "Argentina",
+"Foto": "",
+"Celular": "3513892282",
+"Email": "andres@gmail.com"
+}
