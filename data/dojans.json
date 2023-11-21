@@ -1,0 +1,12 @@
+[
+  {
+    "Nombre": "Pantera Gym",
+    "Direccion": "Maestro Vidal 542, Córdoba",
+    "Dias": "Martes y Jueves",
+    "HoraInicio": "19:00",
+    "HoraFin": "20:30",
+    "Cuota": 6500,
+    "Instructor": "Walter Bur",
+    "Restriccion": "-"
+  }
+]
