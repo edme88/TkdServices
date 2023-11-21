@@ -2,6 +2,7 @@ const express = require("express");
 const usuarios = require("./routes/usuarios");
 const mensajes = require("./routes/mensajes");
 const taekwondistas = require("./routes/taekwondistas");
+const dojans = require("./routes/dojans");
 
 const app = express();
 const routes = express.Router();
@@ -17,6 +18,7 @@ routes.get("/", (request, response) => {
 app.use(routes);
 app.use("/api", usuarios);
 app.use("/api", taekwondistas);
+app.use("/api", dojans);
 app.use(mensajes);
 
 const port = 8080;
