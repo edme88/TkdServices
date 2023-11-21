@@ -4,7 +4,6 @@ const fs = require("fs");
 const dojanService = require("../services/dojans");
 
 routes.get("/dojans", (request, response) => {
-
   let data;
   if (Object.keys(request.query).length === 0) {
     data = dojanService.getAll();
@@ -20,22 +19,30 @@ routes.get("/dojans", (request, response) => {
 });
 
 routes.post("/dojan", (request, response) => {
-  const tkdData = request.body;
-  dojanService.addTaek(tkdData);
-  response.json(`${JSON.stringify(tkdData)} creado OK`);
+  const dojanData = request.body;
+  dojanService.addDojan(dojanData);
+  response.json(`${JSON.stringify(dojanData)} creado OK`);
 });
 
-routes.put("/dojan/:dni", (request, response) => {
+routes.put("/dojan/:id", (request, response) => {
   console.log(request);
   const dataToUpdate = request.body;
-  const res = dojanService.updateTkd(request.params.dni, dataToUpdate);
+  const res = dojanService.updateDojan(request.params.id, dataToUpdate);
 
   response.json(res);
 });
 
-routes.delete("/dojan", (request, response) => {
-  const dni = request.params.dni;
-  response.json({ message: `Persona con DNI ${dni} ha sido eliminada` });
+routes.delete("/dojan/:id", (request, response) => {
+  try {
+    const id = request.params.id;
+    const res = dojanService.deleteDojan(id);
+    response.json({
+      message: `El dojan con el Nombre ${res.Nombre} ha sido eliminada`,
+    });
+  } catch (error) {
+    console.log(error);
+    response.status(404).json({ error: error.message });
+  }
 });
 
 module.exports = routes;

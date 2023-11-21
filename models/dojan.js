@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 const utils = require("../utils/common");
+const { v4: uuidv4 } = require("uuid");
 
 class DojanModel {
   constructor() {
-    const filePath = path.join(__dirname, "../data/dojan.json");
+    const filePath = path.join(__dirname, "../data/dojans.json");
     this.data = fs.readFileSync(filePath, "utf-8");
   }
 
@@ -14,7 +15,7 @@ class DojanModel {
    * @return {Array} Listado de Dojans
    */
   getAll() {
-    return this.data;
+    return JSON.parse(this.data);
   }
 
   /**
@@ -41,6 +42,7 @@ class DojanModel {
 
   addDojan(dojan) {
     dojan.creationDate = new Date().toLocaleDateString();
+    dojan.id = uuidv4();
     utils.saveDataInFile("dojans", dojan);
     return dojan;
   }
@@ -56,6 +58,16 @@ class DojanModel {
     utils.saveDataInFile("taekwondistas", results);
     return results;
   }*/
+
+  deleteDojan(id) {
+    let results = JSON.parse(this.data).find((el) => el["id"] === id);
+
+    if (!results) {
+      throw new Error(`El Dojan con el id ${id} NO existe`);
+    }
+    utils.deleteDataInFile("dojans", "id", id);
+    return results;
+  }
 }
 
 module.exports = new DojanModel();

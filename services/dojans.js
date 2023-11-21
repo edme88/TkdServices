@@ -19,6 +19,10 @@ class DojanService {
   updateDojan(dni, dataToUpdate) {
     return dojanModel.updateDojan(dni, dataToUpdate);
   }
+
+  deleteDojan(id) {
+    return dojanModel.deleteDojan(id);
+  }
 }
 
 module.exports = new DojanService();
