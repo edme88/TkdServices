@@ -19,6 +19,10 @@ class TaekwondistaService {
   updateTkd(dni, dataToUpdate) {
     return tkdModel.updateTkd(dni, dataToUpdate);
   }
+
+  deleteTkd(dni) {
+    return tkdModel.deleteTkd(dni);
+  }
 }
 
 module.exports = new TaekwondistaService();

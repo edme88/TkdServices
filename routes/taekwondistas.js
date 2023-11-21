@@ -130,8 +130,9 @@ routes.put("/taekwondista/:dni", (request, response) => {
   response.json(res);
 });
 
-routes.delete("/taekwondista", (request, response) => {
+routes.delete("/taekwondista/:dni", (request, response) => {
   const dni = request.params.dni;
+  const res = tkdService.deleteTkd(request.params.dni);
   response.json({ message: `Persona con DNI ${dni} ha sido eliminada` });
 });
 

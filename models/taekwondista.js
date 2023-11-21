@@ -14,7 +14,7 @@ class TaekwondistaModel {
    * @return {Array} Listado de taekwondistas
    */
   getAll() {
-    return this.data;
+    return JSON.parse(this.data);
   }
 
   /**
@@ -55,6 +55,10 @@ class TaekwondistaModel {
     utils.deleteDataInFile("taekwondistas", "Dni", dni);
     utils.saveDataInFile("taekwondistas", results);
     return results;
+  }
+
+  deleteTkd(dni) {
+    utils.deleteDataInFile("taekwondistas", "Dni", dni);
   }
 }
 
