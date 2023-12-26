@@ -45,27 +45,35 @@ raw JSON
 
 body:
 {
-"Nombre": "Andres",
-"Apellido": "Leal",
-"Dni": "34011678",
-"Categoría": "blanco",
-"Fecha de Nacimiento": "04/Enero/1989",
-"Instructor": "Maximiliano Pedrotti",
-"Peso": "92kg",
-"Altura": "1,54m",
-"Genero": "Masculino",
-"Nacionalidad": "Argentina",
-"Foto": "",
-"Celular": "3513892282",
-"Email": "andres@gmail.com"
+"nombre": "Andres",
+"apellido": "Leal",
+"dni": "34011678",
+"categoria": "blanco",
+"fecha-nacimiento": "04/Enero/1989",
+"instructor-a-cargo": "Maximiliano Pedrotti",
+"pesa": "92kg",
+"altura": "1,54m",
+"genero": "Masculino",
+"nacionalidad": "Argentina",
+"foto": "",
+"celular": "3513892282",
+"email": "andres@gmail.com",
+"nombre-contacto": "Agustina",
+"apellido-contacto": "Aliciardi",
+"vinculo-contacto": "novia",
+"celular-contacto": "3513892282"
 }
 
 CRUD
-(tarea) hacer el delete
-(tarea) agregar crud de Dojans
+(x) hacer el delete
+(x) agregar crud de Dojans
 Enchufar a la UI
-Interfaz para Dojos y Taekwondistas
+(x) Interfaz para Dojos y Taekwondistas
+(tarea) Modelo Entidad-Relación
+(tarea) Modelo de Clases
 Swagger
+Login
+Test Unitarios en Jest
 
 Luego BD
 Manejo de Errores - Loggers
@@ -74,3 +82,17 @@ Envio de Emails cuando se registra o se crea un evento o capacitación
 Micro-servicios
 Luego conquistar el mundo (?)
 Imagenes del taekwondo
+
+NestJs
+AdonisJs https://adonisjs.com/
+
+npm install swagger-jsdoc
+npm install swagger-ui-express
+
+Documentación de knex https://knexjs.org/guide/query-builder.html#rownumber
+
+Docker
+
+------
+CREAR UN SCRIPT DE INSERT DE DATOS
+EN EL PACKAGE hacer las 3 cosas (drop, create, insert)

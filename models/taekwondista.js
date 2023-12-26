@@ -1,11 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 const utils = require("../utils/common");
+const dataBase = require("../config/database");
+const { response } = require("express");
 
 class TaekwondistaModel {
   constructor() {
-    const filePath = path.join(__dirname, "../data/taekwondistas.json");
-    this.data = fs.readFileSync(filePath, "utf-8");
+    //const filePath = path.join(__dirname, "../data/taekwondistas.json");
+    //this.data = fs.readFileSync(filePath, "utf-8");
   }
 
   /**
@@ -13,8 +15,14 @@ class TaekwondistaModel {
    * @method getAll
    * @return {Array} Listado de taekwondistas
    */
-  getAll() {
-    return JSON.parse(this.data);
+  async getAll() {
+    try {
+      let taekwon = await dataBase.select("*").from("taekwondistas");
+      return JSON.parse(JSON.stringify(taekwon));
+    } catch (error) {
+      console.log(`El error es ${error}`);
+      throw error;
+    }
   }
 
   /**
@@ -42,7 +50,20 @@ class TaekwondistaModel {
 
   addTaek(taekwondista) {
     taekwondista.creationDate = new Date().toLocaleDateString();
-    utils.saveDataInFile("taekwondistas", taekwondista);
+    //utils.saveDataInFile("taekwondistas", taekwondista);
+    console.log(taekwondista);
+    dataBase("taekwondistas")
+      .insert([taekwondista])
+      .then(() => {
+        console.log("taekwondistas agregados a la tabla");
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      })
+      .finally(() => {
+        console.log("cerrando conexion de taekwondistas...");
+        //dataBase.destroy();
+      });
     return taekwondista;
   }
 

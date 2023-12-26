@@ -6,120 +6,40 @@ const tkdService = require("../services/taekwondistas");
 //import chalk from "chalk";
 //const log = console.log;
 
-routes.get("/taekwondistas", (request, response) => {
-  // Obtener los datos obligatorios de la consulta
-  /*const requiredFields = [
-    "nombre",
-    "apellido",
-    "dni",
-    "fechaNacimiento",
-    "direccion",
-    "categoria",
-    "instructor",
-    "peso",
-    "altura",
-    "genero",
-    "nacionalidad",
-    "celular",
-    "email",
-    "contactoEmergencia.nombre",
-    "contactoEmergencia.apellido",
-    "contactoEmergencia.vinculo",
-    "contactoEmergencia.celular",
-  ];
-
-  //console.log(chalk.blue("Hello world!"));
-  const missingFields = [];
-
-  const query = request.query;
-  // Verificar qué campos obligatorios faltan
-  requiredFields.forEach((field, $inx) => {
-    if (!query[field]) {
-      missingFields.push(field);
-      console.log(`It ${$inx} - El valor ${field} no esta incluido`);
+routes.get("/taekwondistas", async (request, response) => {
+  try {
+    let data;
+    if (Object.keys(request.query).length === 0) {
+      data = await tkdService.getAll();
+      console.log(`La DATA es ${JSON.stringify(data)}}]`);
     } else {
-      console.log(`It ${$inx} - El valor ${field} SI esta incluido`);
+      const el = Object.keys(request.query);
+      const key = el[0];
+      const val = Object.values(request.query)[0];
+      console.log(key, val);
+      data = tkdService.getFiltered(key, val);
     }
-  });
-
-  // Comprobar si faltan campos
-  if (missingFields.length > 0) {
-    return response
-      .status(400)
-      .json({ error: "Faltan datos obligatorios", missingFields });
+    response.json(data);
+  } catch (error) {
+    response.status(500).json({ message: error });
   }
-
-  console.log(request);
-  response.json(query);*/
-
-  let data;
-  if (Object.keys(request.query).length === 0) {
-    data = tkdService.getAll();
-  } else {
-    /*const numFiltro = Object.keys(request.query).length;
-    for(let i=0; i<=numFiltro; i++){
-
-    }*/
-    const el = Object.keys(request.query);
-    const key = el[0];
-    const val = Object.values(request.query)[0];
-    console.log(key, val);
-    data = tkdService.getFiltered(key, val);
-  }
-
-  response.json(data);
 });
 
 routes.post("/taekwondista", (request, response) => {
-  /*
-  // Obtener los datos obligatorios de la consulta
-  const requiredFields = [
-    "nombre",
-    "apellido",
-    "dni",
-    "fechaNacimiento",
-    "direccion",
-    "categoria",
-    "instructor",
-    "peso",
-    "altura",
-    "genero",
-    "nacionalidad",
-    "celular",
-    "email",
-    "contactoEmergencia.nombre",
-    "contactoEmergencia.apellido",
-    "contactoEmergencia.vinculo",
-    "contactoEmergencia.celular",
-  ];
-
-  //console.log(chalk.blue("Hello world!"));
-  const missingFields = [];
-
-  const query = request.query;
-  // Verificar qué campos obligatorios faltan
-  requiredFields.forEach((field, $inx) => {
-    if (!query[field]) {
-      missingFields.push(field);
-      console.log(`It ${$inx} - El valor ${field} no esta incluido`);
-    } else {
-      console.log(`It ${$inx} - El valor ${field} SI esta incluido`);
-    }
-  });
-
-  // Comprobar si faltan campos
-  if (missingFields.length > 0) {
-    return response
-      .status(400)
-      .json({ error: "Faltan datos obligatorios", missingFields });
+  try {
+    const tkdData = request.body;
+    console.log(`La info es: ${JSON.stringify(tkdData)}`);
+    tkdService.addTaek(tkdData);
+    response.json(`${JSON.stringify(tkdData)} creado OK`);
+  } catch (error) {
+    console.log(`Ocurrio un error ${error}`);
+    response.status(400).send(`Algo salio mal`);
   }
+});
 
-  console.log(request);
-  fs.writeFileSync("persona.json", request);
-  response.json(query);*/
-  const tkdData = request.body;
-  tkdService.addTaek(tkdData);
-  response.json(`${JSON.stringify(tkdData)} creado OK`);
+routes.post("/test", (request, response) => {
+  console.log(`La respuesta es: ${JSON.stringify(request.body)}`);
+  response.json(request.body);
 });
 
 routes.put("/taekwondista/:dni", (request, response) => {

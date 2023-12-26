@@ -1,0 +1,24 @@
+[
+  {
+    "Nombre": "Pantera Gym",
+    "Direccion": "Maestro Vidal 542, Córdoba",
+    "Dias": "Martes y Jueves",
+    "HoraInicio": "19:00",
+    "HoraFin": "20:30",
+    "Cuota": 6500,
+    "Instructor": "Walter Bur",
+    "Restriccion": null
+  },
+  {
+    "Nombre": "Belgrano",
+    "Direccion": "Belgrano 123, Córdoba",
+    "Dias": "Lunes y Miercoles",
+    "HoraInicio": "20:00",
+    "HoraFin": "21:30",
+    "Cuota": 5000,
+    "Instructor": "Max Ped",
+    "Restriccion": "Adultos",
+    "creationDate": "21/11/2023",
+    "id": "152acc34-3dbc-49f4-8827-80e9203f060b"
+  }
+]

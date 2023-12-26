@@ -40,7 +40,6 @@ routes.delete("/dojan/:id", (request, response) => {
       message: `El dojan con el Nombre ${res.Nombre} ha sido eliminada`,
     });
   } catch (error) {
-    console.log(error);
     response.status(404).json({ error: error.message });
   }
 });
