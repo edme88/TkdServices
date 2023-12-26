@@ -2,20 +2,17 @@ const fs = require("fs");
 const path = require("path");
 const utils = require("../utils/common");
 const { v4: uuidv4 } = require("uuid");
+const dataBase = require("../config/database");
+const { response } = require("express");
+const DAO = require("../models/crud.repository");
 
-class DojanModel {
+class DojanModel extends DAO {
   constructor() {
-    const filePath = path.join(__dirname, "../data/dojans.json");
-    this.data = fs.readFileSync(filePath, "utf-8");
+    super("dojans");
   }
 
-  /**
-   * GET Devuelve el listado de TODOS los dojans
-   * @method getAll
-   * @return {Array} Listado de Dojans
-   */
   getAll() {
-    return JSON.parse(this.data);
+    return this.all();
   }
 
   /**

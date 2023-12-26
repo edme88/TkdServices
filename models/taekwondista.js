@@ -3,11 +3,11 @@ const path = require("path");
 const utils = require("../utils/common");
 const dataBase = require("../config/database");
 const { response } = require("express");
+const DAO = require("../models/crud.repository");
 
-class TaekwondistaModel {
+class TaekwondistaModel extends DAO {
   constructor() {
-    //const filePath = path.join(__dirname, "../data/taekwondistas.json");
-    //this.data = fs.readFileSync(filePath, "utf-8");
+    super("taekwondistas");
   }
 
   /**
@@ -16,13 +16,7 @@ class TaekwondistaModel {
    * @return {Array} Listado de taekwondistas
    */
   async getAll() {
-    try {
-      let taekwon = await dataBase.select("*").from("taekwondistas");
-      return JSON.parse(JSON.stringify(taekwon));
-    } catch (error) {
-      console.log(`El error es ${error}`);
-      throw error;
-    }
+    return this.all();
   }
 
   /**
@@ -33,24 +27,11 @@ class TaekwondistaModel {
    * @return {Array} Listado de taekwondistas que coincidan con la busqueda
    */
   getFiltered(filterName, filterValue) {
-    const data = JSON.parse(this.getAll());
-    const results = data.filter((el) => el[filterName] === filterValue);
-
-    if (results === undefined) {
-      const error = {
-        message: `No se encuentra el taekwondista con el ${filterName}=${filterValue}`,
-      };
-      return error;
-    }
-    console.log(`Resultado: ${JSON.stringify(results)}`);
-    console.log(`Nombre del filtro: ${filterName}`);
-    console.log(`Valor del filtro: ${filterValue}`);
-    return results;
+    return this.filterBy(filterName, filterValue);
   }
 
   addTaek(taekwondista) {
-    taekwondista.creationDate = new Date().toLocaleDateString();
-    //utils.saveDataInFile("taekwondistas", taekwondista);
+    /*taekwondista.creationDate = new Date().toLocaleDateString();
     console.log(taekwondista);
     dataBase("taekwondistas")
       .insert([taekwondista])
@@ -64,7 +45,8 @@ class TaekwondistaModel {
         console.log("cerrando conexion de taekwondistas...");
         //dataBase.destroy();
       });
-    return taekwondista;
+    return taekwondista;*/
+    return this.createData(taekwondista);
   }
 
   updateTkd(dni, dataToUpdate) {

@@ -1,0 +1,63 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API REST del componente Taekwondistas",
+    "version": "1.0.0",
+    "title": "Search Engine"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "routes",
+      "description": "API REST"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/taekwondistas": {
+      "get": {
+        "tags": ["Taekwondistas"],
+        "summary": "Devuelve el listado de todos los taekwondistas",
+        "description": "",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Operacion correcta",
+            "schema": {
+              "$ref": "#/definitions/taekwondistas"
+            }
+          }
+        }
+      }
+    },
+    "/taekwondista": {
+      "post": {}
+    }
+  },
+  "definitions": {
+    "taekwondistas": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "int64",
+          "example": "search engine"
+        },
+        "version": {
+          "type": "string",
+          "format": "int64",
+          "example": "2022-02"
+        },
+        "status": {
+          "type": "string",
+          "format": "int64",
+          "example": "active"
+        }
+      },
+      "xml": {
+        "name": "Status"
+      }
+    }
+  }
+}

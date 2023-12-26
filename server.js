@@ -1,5 +1,7 @@
 const express = require("express");
 const taekwondistas = require("./routes/taekwondistas");
+const swaggerUI = require("swagger-ui-express");
+const taekwondistaDocument = require("./swagger/taekwondista.json");
 
 const app = express();
 
@@ -12,6 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", taekwondistas);
+
+taekwondistaDocument.host = `${config.HOST}:${config.PORT}`;
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(taekwondistaDocument));
 
 const port = config.PORT;
 const server = app.listen(port, () => {

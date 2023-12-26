@@ -2,6 +2,7 @@ const express = require("express");
 const routes = express.Router();
 const fs = require("fs");
 const tkdService = require("../services/taekwondistas");
+
 //const chalk = require("chalk");
 //import chalk from "chalk";
 //const log = console.log;
@@ -17,7 +18,7 @@ routes.get("/taekwondistas", async (request, response) => {
       const key = el[0];
       const val = Object.values(request.query)[0];
       console.log(key, val);
-      data = tkdService.getFiltered(key, val);
+      data = await tkdService.getFiltered(key, val);
     }
     response.json(data);
   } catch (error) {
