@@ -26,26 +26,11 @@ class TaekwondistaModel extends DAO {
    * Instructor, Peso, Altura, Genero, Nacionalidad, Celular, Email": "edmealiciardi@gmail.com"
    * @return {Array} Listado de taekwondistas que coincidan con la busqueda
    */
-  getFiltered(filterName, filterValue) {
+  async getFiltered(filterName, filterValue) {
     return this.filterBy(filterName, filterValue);
   }
 
-  addTaek(taekwondista) {
-    /*taekwondista.creationDate = new Date().toLocaleDateString();
-    console.log(taekwondista);
-    dataBase("taekwondistas")
-      .insert([taekwondista])
-      .then(() => {
-        console.log("taekwondistas agregados a la tabla");
-      })
-      .catch((error) => {
-        console.log("error:", error);
-      })
-      .finally(() => {
-        console.log("cerrando conexion de taekwondistas...");
-        //dataBase.destroy();
-      });
-    return taekwondista;*/
+  async addTaek(taekwondista) {
     return this.createData(taekwondista);
   }
 

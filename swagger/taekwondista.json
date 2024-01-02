@@ -21,40 +21,291 @@
         "summary": "Devuelve el listado de todos los taekwondistas",
         "description": "",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "dni",
+            "description": "Busqueda con filtro",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "nombre",
+            "description": "Busqueda con filtro",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "apellido",
+            "description": "Busqueda con filtro",
+            "type": "string",
+            "required": false
+          }
+        ],
         "responses": {
           "200": {
             "description": "Operacion correcta",
             "schema": {
-              "$ref": "#/definitions/taekwondistas"
+              "$ref": "#/definitions/taekwondistasGET"
             }
           }
         }
       }
     },
     "/taekwondista": {
-      "post": {}
+      "post": {
+        "tags": ["Taekwondistas"],
+        "summary": "Almacena en BD el valor del taekwondista",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Almacenamiento de Taekwodistas",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/taekwondistasPOST"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operacion correcta",
+            "schema": {
+              "$ref": "#/definitions/taekwondistasPOST"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "taekwondistas": {
+    "taekwondistasGET": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string",
-          "format": "int64",
-          "example": "search engine"
+        "id": {
+          "type": "integer",
+          "title": "The id Schema",
+          "examples": [8, 9, 10]
         },
-        "version": {
+        "nombre": {
           "type": "string",
-          "format": "int64",
-          "example": "2022-02"
+          "title": "The nombre Schema",
+          "examples": ["Andres", "Olivia"]
         },
-        "status": {
+        "apellido": {
           "type": "string",
-          "format": "int64",
-          "example": "active"
+          "title": "The apellido Schema",
+          "examples": ["Leal", "Oliv"]
+        },
+        "dni": {
+          "type": "integer",
+          "title": "The dni Schema",
+          "examples": [34011678, 55623128]
+        },
+        "fecha_nacimiento": {
+          "type": ["null", "string"],
+          "title": "The fecha_nacimiento Schema",
+          "examples": [null, "0000-00-00 00:00:00.000000"]
+        },
+        "direccion": {
+          "type": "null",
+          "title": "The direccion Schema",
+          "examples": [null]
+        },
+        "categoria": {
+          "type": "string",
+          "title": "The categoria Schema",
+          "examples": ["blanco", "Blanco"]
+        },
+        "instructor_a_cargo": {
+          "type": ["null", "string"],
+          "title": "The instructor_a_cargo Schema",
+          "examples": [null, "Walter Burgueño", "Maximiliano Pedrotti"]
+        },
+        "peso": {
+          "type": ["null", "number"],
+          "title": "The peso Schema",
+          "examples": [null, 0.99]
+        },
+        "altura": {
+          "type": ["null", "number"],
+          "title": "The altura Schema",
+          "examples": [null, 0.99]
+        },
+        "genero": {
+          "type": "string",
+          "title": "The genero Schema",
+          "examples": ["Masculino", "Femenino"]
+        },
+        "nacionalidad": {
+          "type": "string",
+          "title": "The nacionalidad Schema",
+          "examples": ["Argentina"]
+        },
+        "celular": {
+          "type": "integer",
+          "title": "The celular Schema",
+          "examples": [2147483647]
+        },
+        "email": {
+          "type": "string",
+          "title": "The email Schema",
+          "examples": ["andres@gmail.com", "olicvia@gmail.com"]
+        },
+        "nombre_contacto": {
+          "type": "null",
+          "title": "The nombre_contacto Schema",
+          "examples": [null]
+        },
+        "apellido_contacto": {
+          "type": "null",
+          "title": "The apellido_contacto Schema",
+          "examples": [null]
+        },
+        "vinculo_contacto": {
+          "type": "null",
+          "title": "The vinculo_contacto Schema",
+          "examples": [null]
+        },
+        "celular_contacto": {
+          "type": "null",
+          "title": "The celular_contacto Schema",
+          "examples": [null]
+        },
+        "creationDate": {
+          "type": ["string", "null"],
+          "title": "The creationDate Schema",
+          "examples": ["0000-00-00 00:00:00", null]
         }
       },
+      "xml": {
+        "name": "Status"
+      }
+    },
+    "taekwondistasPOST": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "default": "Agustina",
+          "title": "The nombre Schema",
+          "examples": ["Andres"]
+        },
+        "apellido": {
+          "type": "string",
+          "default": "Aliciardi",
+          "title": "The apellido Schema",
+          "examples": ["Leal"]
+        },
+        "dni": {
+          "type": "string",
+          "default": "34004888",
+          "title": "The dni Schema",
+          "examples": ["34011678"]
+        },
+        "categoria": {
+          "type": "string",
+          "default": "3 Dan - Boo Sabom Nim",
+          "title": "The categoria Schema",
+          "examples": ["blanco"]
+        },
+        "fecha_nacimiento": {
+          "type": "string",
+          "default": "24/Octubre/1988",
+          "title": "The fecha-nacimiento Schema",
+          "examples": ["04/Enero/1989"]
+        },
+        "instructor_a_cargo": {
+          "type": "string",
+          "default": "Maximiliano Pedrotti",
+          "title": "The instructor-a-cargo Schema",
+          "examples": ["Maximiliano Pedrotti"]
+        },
+        "peso": {
+          "type": "string",
+          "default": "56Kg",
+          "title": "The pesa Schema",
+          "examples": ["92kg"]
+        },
+        "altura": {
+          "type": "string",
+          "default": "1,54m",
+          "title": "The altura Schema",
+          "examples": ["1,54m"]
+        },
+        "genero": {
+          "type": "string",
+          "default": "Femenino",
+          "title": "The genero Schema",
+          "examples": ["Masculino"]
+        },
+        "nacionalidad": {
+          "type": "string",
+          "default": "Argentina",
+          "title": "The nacionalidad Schema",
+          "examples": ["Argentina"]
+        },
+        "celular": {
+          "type": "string",
+          "default": "3513892282",
+          "title": "The celular Schema",
+          "examples": ["3513892282"]
+        },
+        "email": {
+          "type": "string",
+          "default": "agus@gmail.com",
+          "title": "The email Schema",
+          "examples": ["andres@gmail.com"]
+        },
+        "nombre_contacto": {
+          "type": "string",
+          "default": "Andrés",
+          "title": "The nombre-contacto Schema",
+          "examples": ["Agustina"]
+        },
+        "apellido_contacto": {
+          "type": "string",
+          "default": "Leal",
+          "title": "The apellido-contacto Schema",
+          "examples": ["Aliciardi"]
+        },
+        "vinculo_contacto": {
+          "type": "string",
+          "default": "novio",
+          "title": "The vinculo-contacto Schema",
+          "examples": ["novia"]
+        },
+        "celular_contacto": {
+          "type": "string",
+          "default": "3513892262",
+          "title": "The celular-contacto Schema",
+          "examples": ["3513892282"]
+        }
+      },
+      "examples": [
+        {
+          "nombre": "Andres",
+          "apellido": "Leal",
+          "dni": "34011678",
+          "categoria": "blanco",
+          "fecha_nacimiento": "04/Enero/1989",
+          "instructor_a_cargo": "Maximiliano Pedrotti",
+          "peso": "92kg",
+          "altura": "1,54m",
+          "genero": "Masculino",
+          "nacionalidad": "Argentina",
+          "celular": "3513892282",
+          "email": "andres@gmail.com",
+          "nombre_contacto": "Agustina",
+          "apellido_contacto": "Aliciardi",
+          "vinculo_contacto": "novia",
+          "celular_contacto": "3513892282"
+        }
+      ],
       "xml": {
         "name": "Status"
       }

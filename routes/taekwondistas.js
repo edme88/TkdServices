@@ -10,6 +10,7 @@ const tkdService = require("../services/taekwondistas");
 routes.get("/taekwondistas", async (request, response) => {
   try {
     let data;
+    console.log(`SE RECIBIO ${JSON.stringify(request.query)}`);
     if (Object.keys(request.query).length === 0) {
       data = await tkdService.getAll();
       console.log(`La DATA es ${JSON.stringify(data)}}]`);
@@ -22,19 +23,19 @@ routes.get("/taekwondistas", async (request, response) => {
     }
     response.json(data);
   } catch (error) {
-    response.status(500).json({ message: error });
+    response.status(500).json({ message: error.message });
   }
 });
 
-routes.post("/taekwondista", (request, response) => {
+routes.post("/taekwondista", async (request, response) => {
   try {
     const tkdData = request.body;
     console.log(`La info es: ${JSON.stringify(tkdData)}`);
-    tkdService.addTaek(tkdData);
-    response.json(`${JSON.stringify(tkdData)} creado OK`);
+    await tkdService.addTaek(tkdData);
+    response.status(201).json(`${JSON.stringify(tkdData)} creado OK`);
   } catch (error) {
     console.log(`Ocurrio un error ${error}`);
-    response.status(400).send(`Algo salio mal`);
+    response.status(400).json({ Message: error.message });
   }
 });
 

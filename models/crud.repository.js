@@ -20,9 +20,9 @@ class DAO {
   }
 
   async filterBy(filterName, filterValue) {
-    const data2 = await this.all();
-    const data = JSON.parse(data2);
-    const results = data.filter((el) => el[filterName] === filterValue);
+    const data = await this.all();
+    console.log(`LA DATA2 es ${JSON.stringify(data)}`);
+    const results = data.filter((el) => el[filterName] == filterValue);
 
     if (results === undefined) {
       const error = {
@@ -36,18 +36,17 @@ class DAO {
     return results;
   }
 
-  createData(data) {
-    data.creationDate = new Date().toLocaleDateString();
-    console.log(data);
-    dataBase(this.tableName)
-      .insert([data])
-      .then(() => {
-        console.log(`Datos agregados a la tabla ${this.tableName}`);
-      })
-      .catch((error) => {
-        console.log("error:", error);
-      });
-    return data;
+  async createData(data) {
+    try {
+      data.creationDate = new Date().toLocaleDateString();
+      console.log(data);
+      const result = await dataBase(this.tableName).insert([data]);
+      console.log(`El RESULT es: ${result}`);
+      return result;
+    } catch (error) {
+      console.log("error:", error);
+      throw error;
+    }
   }
 }
 

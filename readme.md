@@ -93,6 +93,14 @@ Documentación de knex https://knexjs.org/guide/query-builder.html#rownumber
 
 Docker
 
-------
+---
+
 CREAR UN SCRIPT DE INSERT DE DATOS
 EN EL PACKAGE hacer las 3 cosas (drop, create, insert)
+
+SWAGGER
+http://localhost:8080/docs/
+
+Implementar el UPDATE y el DELETE
+Get filtered: búsqueda por rango
+Get filtered by year: rango de años
